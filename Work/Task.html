@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Example</title>
+</head>
+<body>
+
+<input type="text" placeholder="Enter Number 1" id="n1">
+<br><br>
+
+<input type="text" placeholder="Enter Number 2" id="n2">
+<br><br>
+
+<button onclick="showaray()">Submit</button>
+<br><br>
+
+<button onclick="showarryuserinput()">Value get by User</button>
+<br><br>
+
+<button onclick="Assadingorder()"> Array Assading Order</button>
+<br> <br>
+
+<button onclick="ReverseArray()"> ReverseArray</button>
+<br> <br>
+
+<button onclick="pallindrome()"> pallindrome </button>
+<br> <br>
+
+<button onclick="binarysearch()"> Binary(Index) Search from Array </button>
+<br> <br>
+
+<button onclick="validate()"> Validation </button>
+
+
+<p id="output"></p>
+<p id="output2"></p>
+<p id="output4" ></p>
+<p id="output3"></p>
+<p id="output5" ></p>
+<p id="output6"></p>
+<p id="output7"></p>
+<p id="output8"></p>
+<p id="output9"></p>
+<p id="output10"></p>
+
+<p id="output11"></p>
+<p id="output12"></p>
+<p id="output13"></p>
+<p id="output14"></p>
+
+<script>
+function showaray() {
+    let arr = [10, 20, 30, 40, 50, 60];
+
+    let num1 = Number(document.getElementById("n1").value);
+    let num2 = Number(document.getElementById("n2").value);
+
+    arr.push(num1, num2);
+
+    document.getElementById("output").innerHTML = arr.join(", ");
+}
+
+function showarryuserinput() {
+    let arr1 = [];
+
+    for (let i = 0; i < 3; i++) {
+        let input = prompt(`Enter value : ${i + 1}:`);
+        arr1.push(input);
+    }
+
+    document.getElementById("output2").innerHTML = arr1.join(", ");
+}
+
+
+function Assadingorder() {
+    let arr1 = [];
+    let temp;
+
+    for (let i = 0; i < 5; i++) {
+        let input = Number(prompt(`Enter value ${i + 1}:`));
+        arr1.push(input);
+    }
+       document.getElementById("output4").innerHTML ="Before Assading order value (Enter User values :) : " + arr1.join(", ");
+    for (let j = 0; j < arr1.length - 1; j++) {
+        for (let k = j + 1; k < arr1.length; k++) {
+            if (arr1[j] > arr1[k]) {
+                temp = arr1[j];
+                arr1[j] = arr1[k];
+                arr1[k] = temp;
+            }
+        }
+    }
+
+       document.getElementById("output3").innerHTML = "After Assading order values :  " + arr1.join(", ");
+}
+
+ function ReverseArray() {
+    let a = [];
+    let temp;
+    let left = 0;
+
+    for (let i = 0; i < 5; i++) {
+        let input = Number(prompt(`Enter value ${i + 1}:`));
+        a.push(input);
+    }
+
+    let right = a.length - 1;
+
+    document.getElementById("output5").innerHTML =
+        "Before Reverse order: " + a.join(", ");
+
+    while (left < right) {
+        temp = a[left];
+        a[left] = a[right];
+        a[right] = temp;
+
+        left++;
+        right--;
+    }
+
+    document.getElementById("output6").innerHTML =
+        "After Reverse order: " + a.join(", ");
+}
+
+function pallindrome()
+{
+  let arr1 = [];
+    let temp;
+
+    for (let i = 0; i < 5; i++) {
+        let input = Number(prompt(`Enter value ${i + 1}:`));
+        arr1.push(input);
+    }
+       
+
+           let ispallindrome = true;
+
+           for (let i=0 ; i<arr1.length /2 ; i++)
+           {
+                   if (arr1[i] !== arr1[arr1.length -1  -i])
+                   {
+                     ispallindrome = false;
+                     break;
+                   }
+               
+           }
+           
+
+             if (ispallindrome)
+             {
+
+                 document.getElementById("output7").innerHTML =" pallindrome value : " + arr1.join(", ");
+             }
+             else{
+
+                  document.getElementById("output7").innerHTML =" Not pallindrome value : " + arr1.join(", ");
+             }
+
+}
+
+function binarysearch() {
+    // Array input
+    let arr = [];
+
+    for (let i = 0; i < 5; i++) {
+        let input = Number(prompt(`Enter value ${i + 1}:`));
+        arr.push(input);
+    }
+
+    // Sort array in ascending order
+    arr.sort((a, b) => a - b);
+
+    document.getElementById("output8").innerHTML =
+        "Sorted Array: " + arr.join(", ");
+
+    // Search value
+    let target = Number(prompt("Enter number to search:"));
+
+    document.getElementById("output9").innerHTML =
+        "Search Number: " + target;
+
+    // Binary Search
+    let left = 0;
+    let right = arr.length - 1;
+    let index = -1;
+
+    while (left <= right) {
+        let mid = Math.floor((left + right) / 2);
+
+        if (arr[mid] === target) {
+            index = mid;
+            break;
+        } else if (arr[mid] < target) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+
+    // Output
+    if (index !== -1) {
+        document.getElementById("output10").innerHTML =
+            "Found at Index: " + index;
+    } else {
+        document.getElementById("output10").innerHTML =
+            "Number not found in array.";
+    }
+}
+function validate() {
+
+    let validation_name = prompt("Enter First Name:");
+    let validation_lastname = prompt("Enter Last Name:");
+    let validation_mobile = prompt("Enter Mobile Number:");
+
+    document.getElementById("output11").innerHTML =
+        "First Name: " + validation_name;
+
+    document.getElementById("output12").innerHTML =
+        "Last Name: " + validation_lastname;
+
+    document.getElementById("output13").innerHTML =
+        "Mobile Number: " + validation_mobile;
+
+    // Regular Expressions
+    let nameRegex = /^[A-Za-z]{0,20}$/;
+    let mobileRegex = /^[6-9][0-9]{9}$/;
+
+    let errorMsg = "";
+
+    // First Name Validation
+    if (!validation_name.match(nameRegex)) {
+        errorMsg += "Invalid First Name<br>";
+    }
+
+    // Last Name Validation
+    if (!validation_lastname.match(nameRegex)) {
+        errorMsg += "Invalid Last Name<br>";
+    }
+
+    // Mobile Number Validation
+    if (!validation_mobile.match(mobileRegex)) {
+        errorMsg += "Invalid Mobile Number<br>";
+    }
+
+    // Display Result
+    if (errorMsg == "") {
+        document.getElementById("output14").innerHTML =
+            "All Details are Valid!";
+    } else {
+        document.getElementById("output14").innerHTML = errorMsg;
+    }
+}
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+ <style>
+
+*{
+	box-sizing:border-box;
+	margin:0px;
+}
+.title {
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+.row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        
+        /* TABLE CSS */
+
+        .student-table {
+            width: 70%;
+            margin: auto;
+            border-collapse: separate;
+			 border: 2px solid black;
+			
+		     table-layout: fixed;
+        }
+        .student-table th,
+        .student-table td {
+            border: 1px solid ;
+			
+            padding: 12px;
+            text-align: center;
+        }
+
+         .student-table th {
+            font-weight: bold;
+            font-size: 18px;
+        }
+ </style>
+
+</head>
+<body> 
+
+ <h1 class="title">Student Details</h1>
+ <table class="student-table">
+   <tr>
+          <th rowspan="2">
+                   Heading
+                </th>
+       <th> Students</th>
+           <th colspan="3"> Details</th>
+
+          
+   </tr>
+    <tr>
+         <th> ID</th>
+           <th> Name</th> 
+           <th> Department</th>
+           <th> Roll Number</th>
+               </tr>
+     
+         <tr>
+<th rowspan="4"> Student List</th>
+           <th> 1</th>
+           <th> Victor</th>
+           <th> Computer Science</th>
+           <th> 1234</th>
+           <tr>
+                    <th> 2</th>
+                <th> Hardik</th>
+                <th> Electric</th>
+                <th> 4566</th>
+        </tr>
+            
+            <tr>
+                    <th> 3</th>
+                <th> Mayur</th>
+                <th> Civil</th>
+                <th> 36679</th>
+        </tr> 
+
+             <tr>
+                    <th> 4</th>
+                <th> Hetansh</th>
+                <th> Research</th>
+                <th> 9871</th>
+        </tr>
+         </tr>
+               
+ </table>
+    
+</body>
+</html>
