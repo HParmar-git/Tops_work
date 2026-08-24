@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Result</title>
+     <style>
+        body {
+            font-family: Arial;
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+
+        .container {
+            width: 400px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 25px;
+            margin-top: 15px;
+            cursor: pointer;
+            background-color: green;
+            color: white;
+            border: none;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        #error {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+
+        <h2>Student Result</h2>
+
+        <input type="text" id="name" placeholder="Enter Student Name">
+
+        <input type="number" id="sub1" placeholder="Enter English Marks">
+
+        <input type="number" id="sub2" placeholder="Enter Maths Marks">
+
+        <input type="number" id="sub3" placeholder="Enter Science Marks">
+
+        <input type="number" id="sub4" placeholder="Enter Computer Marks">
+
+        <input type="number" id="sub5" placeholder="Enter Gujarati Marks">
+
+        <br>
+
+        <button onclick="calculateResult()">Calculate Result</button>
+
+        <div id="error"></div>
+
+        <div id="result"></div>
+
+    </div>
+
+
+    <script>
+
+        function calculateResult() {
+
+            let name = document.getElementById("name").value.trim();
+
+            let sub1 = document.getElementById("sub1").value;
+            let sub2 = document.getElementById("sub2").value;
+            let sub3 = document.getElementById("sub3").value;
+            let sub4 = document.getElementById("sub4").value;
+            let sub5 = document.getElementById("sub5").value;
+
+
+            // Required field validation
+            if (
+                name == "" ||
+                sub1 == "" ||
+                sub2 == "" ||
+                sub3 == "" ||
+                sub4 == "" ||
+                sub5 == ""
+            ) {
+
+                document.getElementById("error").innerHTML =
+                    "Please fill all fields.";
+
+                document.getElementById("result").innerHTML = "";
+
+                return;
+            }
+
+
+            // Convert marks into numbers
+            sub1 = Number(sub1);
+            sub2 = Number(sub2);
+            sub3 = Number(sub3);
+            sub4 = Number(sub4);
+            sub5 = Number(sub5);
+
+
+            // Marks validation
+            if (
+                sub1 < 0 || sub1 > 100 ||
+                sub2 < 0 || sub2 > 100 ||
+                sub3 < 0 || sub3 > 100 ||
+                sub4 < 0 || sub4 > 100 ||
+                sub5 < 0 || sub5 > 100
+            ) {
+
+                document.getElementById("error").innerHTML =
+                    "Marks must be between 0 and 100.";
+
+                document.getElementById("result").innerHTML = "";
+
+                return;
+            }
+
+
+            document.getElementById("error").innerHTML = "";
+
+
+            // Calculate total
+            let total = sub1 + sub2 + sub3 + sub4 + sub5;
+
+
+            // Calculate percentage
+            let percentage = total / 5;
+
+
+            // Calculate grade
+            let grade;
+
+            if (percentage >= 90) {
+                grade = "A+";
+            }
+            else if (percentage >= 80) {
+                grade = "A";
+            }
+            else if (percentage >= 70) {
+                grade = "B";
+            }
+            else if (percentage >= 60) {
+                grade = "C";
+            }
+            else if (percentage >= 50) {
+                grade = "D";
+            }
+            else {
+                grade = "F";
+            }
+
+
+            // Calculate result
+            let status;
+
+            if (
+                sub1 >= 35 &&
+                sub2 >= 35 &&
+                sub3 >= 35 &&
+                sub4 >= 35 &&
+                sub5 >= 35
+            ) {
+                status = "PASS";
+            }
+            else {
+                status = "FAIL";
+            }
+
+
+            // Display result
+            document.getElementById("result").innerHTML =
+                "<h3>Student Result</h3>" +
+                "Name: " + name + "<br>" +
+                "Total Marks: " + total + " / 500<br>" +
+                "Percentage: " + percentage + "%<br>" +
+                "Grade: " + grade + "<br>" +
+                "Result: " + status;
+
+        }
+
+    </script>
+
+
+</body>
+</html>

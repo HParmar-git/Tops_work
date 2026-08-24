@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>CSS Change on Click</title>
+
+    <style>
+        #box {
+            width: 300px;
+            height: 150px;
+            background-color: red;
+            margin: 30px auto;
+            text-align: center;
+            padding-top: 50px;
+            color: white;
+        }
+
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+     <div id="box">On click Button Change Color ... ! </div>
+
+    <button onclick="changeCSS()">Click Me</button>
+
+    <script>
+
+       function changeCSS() {
+
+            let box = document.getElementById("box");
+
+            let color = box.style.backgroundColor;
+
+            if (color == "red") {
+
+                box.style.backgroundColor = "green";
+                box.style.color = "black";
+                box.style.width = "300px";
+                box.style.height = "150px";
+
+            } else {
+
+                box.style.backgroundColor = "red";
+                box.style.color = "white";
+               box.style.width = "300px";
+                box.style.height = "150px";
+
+            }
+        }
+
+    </script>
+
+    
+</body>
+</html>

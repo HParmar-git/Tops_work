@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+     <title>Light ON OFF</title>
+
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial;
+            margin-top: 50px;
+        }
+
+        #bulb {
+            width: 200px;
+            height: 200px;
+        }
+
+         #button {
+            padding: 10px 30px;
+            font-size: 18px;
+            color: white;
+            border: none;
+            cursor: pointer;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    
+    <h2>Light ON / OFF</h2>
+
+    <img id="bulb" src="off.png">
+
+    <br><br>
+
+    <button id = "button" onclick="lightOnOff()">ON / OFF</button>
+
+    <script>
+
+        let light = false;
+
+        function lightOnOff() {
+
+            if (light == false) {
+
+                document.getElementById("bulb").src = "on.png";
+                document.getElementById("button").style.backgroundColor = "green";
+
+                light = true;
+
+            } else {
+
+                document.getElementById("bulb").src = "off.png";
+
+                document.getElementById("button").style.backgroundColor = "red";
+
+                light = false;
+            }
+        }
+
+    </script>
+
+</body>
+</html>
