@@ -1,0 +1,101 @@
+//css store variable 
+
+$tc: white;
+$bg: darkblue;
+$fs: 28px;
+
+.box {
+    width: 200px;
+    height: 200px;
+    background-color: $bg;
+    color: $tc;
+    font-size: $fs;
+}
+
+//Nested
+/*
+
+.nav ul{
+}
+.nav li{
+}
+.nav a{
+}
+
+*/
+
+
+.nav {
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        background-color: $bg;
+
+    }
+
+    li {
+        display: inline-block;
+    }
+
+    a {
+        display: block;
+        padding: 6px 12px;
+        text-decoration: none;
+        color: $tc;
+    }
+}
+
+// nested properties
+
+.myproperties {
+    font: {
+        family: Helvetica, sans-serif;
+        size: 18px;
+        weight: bold;
+    }
+}
+
+.myproperties1 {
+    text: {
+        align: center;
+        transform: lowercase;
+        overflow: hidden;
+    }
+}
+
+// extends
+
+.button-basic {
+    border: none;
+    padding: 15px 30px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    color: white;
+}
+
+.red-basic {
+    @extend .button-basic;
+    background-color: red;
+}
+
+.green-basic {
+    @extend .button-basic;
+    background-color: green;
+}
+
+.blue-basic {
+    @extend .button-basic;
+    background-color: blue;
+}
+
+.orange-basic {
+    @extend .button-basic;
+    background-color: orange;
+}
+
+.purple-basic {
+    @extend .button-basic;
+    background-color: purple;
+}
