@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox & Grid Layouts Masterclass</title>
+    <style>
+        /* Base Reset & Styling */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f9;
+            color: #1e293b;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+            color: #0f172a;
+            border-left: 5px solid #2563eb;
+            padding-left: 10px;
+        }
+
+        section {
+            background: #ffffff;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+
+        /* ==========================================
+           TASK 1: SOCIAL ICONS ROW (FLEXBOX)
+           ========================================== */
+        .social-icons-container {
+            display: flex;
+            /* Flexbox row layout */
+            flex-direction: row; 
+            /* Equal distribution spacing layout rules */
+            justify-content: space-around; 
+            align-items: center;
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px dashed #cbd5e1;
+        }
+
+        .icon-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s ease;
+            cursor: pointer;
+        }
+
+        .icon-wrapper:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Functional placeholder SVG styling mimicking real app interfaces */
+        .social-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .icon-instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+        .icon-whatsapp  { background-color: #25D366; }
+        .icon-zomato    { background-color: #cb202d; }
+        .icon-spotify   { background-color: #1DB954; }
+
+        .icon-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #64748b;
+        }
+
+        /* ==========================================
+           TASK 2: SPOTIFY PLAYLIST BAR (FLEXBOX)
+           ========================================== */
+        .playlist-scroll-container {
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+
+        .playlist-bar {
+            display: flex;
+            flex-direction: row;
+            gap: 16px;
+            /* Prevents collapsing inside horizontal scroll mechanics */
+            flex-wrap: nowrap; 
+            background-color: #121212;
+            padding: 16px;
+            border-radius: 8px;
+        }
+
+        .song-card {
+            display: flex;
+            flex-direction: row;
+            gap: 12px;
+            background-color: #181818;
+            padding: 8px;
+            border-radius: 6px;
+            min-width: 220px;
+            flex: 1 0 calc(20% - 13px); /* Flex grow, shrink, and structural basis settings */
+            transition: background-color 0.2s ease;
+            cursor: pointer;
+            border: 1px solid #282828;
+            
+            /* CRITICAL REQ: Vertically centers text content items inside the card element */
+            align-items: center; 
+        }
+
+        .song-card:hover {
+            background-color: #282828;
+        }
+
+        .album-art {
+            width: 48px;
+            height: 48px;
+            border-radius: 4px;
+            background-color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #a7a7a7;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .song-details {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            overflow: hidden;
+        }
+
+        .song-name {
+            color: #ffffff;
+            font-size: 0.9rem;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .artist-name {
+            color: #b3b3b3;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* ==========================================
+           TASK 3 & 4: FLIPKART PRODUCT GRID (GRID)
+           ========================================== */
+        .product-grid {
+            display: grid;
+            gap: 20px;
+            
+            /* TASK 4 DEFAULT DESKTOP STATE: 3 columns, 2 rows automatically inferred from 6 elements */
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .product-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: box-shadow 0.3s ease, transform 0.2s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .product-image-placeholder {
+            width: 100%;
+            height: 200px;
+            background-color: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .product-info {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .product-brand {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #64748b;
+            font-weight: 700;
+        }
+
+        .product-title {
+            font-size: 0.95rem;
+            color: #1e293b;
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .price-container {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+
+        .selling-price {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #212121;
+        }
+
+        .mrp-price {
+            font-size: 0.85rem;
+            text-decoration: line-through;
+            color: #878787;
+        }
+
+        .discount-tag {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #388e3c;
+        }
+
+        /* ==========================================
+           TASK 4: RESPONSIVE MEDIA QUERIES
+           ========================================== */
+        
+        /* TABLET VIEW BREAKPOINT */
+        @media (max-width: 992px) and (min-width: 577px) {
+            .product-grid {
+                /* Reflows grid systems cleanly into 2 columns on mid-sized viewports */
+                grid-template-columns: repeat(2, 1fr); 
+            }
+        }
+
+        /* MOBILE VIEW BREAKPOINT */
+        @media (max-width: 576px) {
+            .product-grid {
+                /* Drops into a clean single vertical item presentation column stack */
+                grid-template-columns: 1fr; 
+            }
+            
+            body {
+                padding: 20px 10px;
+                gap: 30px;
+            }
+            
+            .social-icons-container {
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+            
+            .icon-wrapper {
+                flex: 1 0 calc(50% - 20px);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TASK 1: SOCIAL ICONS ROW USING FLEXBOX -->
+    <section>
+        <h2>Task 1: Favorite Social Icons Row</h2>
+        <div class="social-icons-container">
+            <div class="icon-wrapper">
+                <div class="social-icon icon-instagram">Insta</div>
+                <span class="icon-label">Instagram</span>
+            </div>
+            <div class="icon-wrapper">
+                <div class="social-icon icon-whatsapp">WA</div>
+                <span class="icon-label">WhatsApp</span>
+            </div>
+            <div class="icon-wrapper">
+                <div class="social-icon icon-zomato">Zom</div>
+                <span class="icon-label">Zomato</span>
+            </div>
+            <div class="icon-wrapper">
+                <div class="social-icon icon-spotify">Spot</div>
+                <span class="icon-label">Spotify</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- TASK 2: SPOTIFY PLAYLIST BAR USING FLEXBOX -->
+    <section>
+        <h2>Task 2: Spotify Playlist Bar</h2>
+        <div class="playlist-scroll-container">
+            <div class="playlist-bar">
+                <div class="song-card">
+                    <div class="album-art">♫</div>
+                    <div class="song-details">
+                        <div class="song-name">Starboy</div>
+                        <div class="artist-name">The Weeknd</div>
+                    </div>
+                </div>
+                <div class="song-card">
+                    <div class="album-art">♫</div>
+                    <div class="song-details">

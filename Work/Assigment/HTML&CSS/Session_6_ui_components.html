@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Component Components - Showcase</title>
+    <style>
+        /* General Setup & Typography */
+        body {
+            font-family: Arial, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 40px 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1c1c1c;
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 8px;
+            margin-top: 40px;
+            color: #444;
+        }
+
+        .showcase-section {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+
+        /* ----------------------------------------------------
+           Task 5: Reusable Utility Class for Maintainability
+           ----------------------------------------------------
+           Using a utility class like .box-spacing reduces repetition (DRY principle).
+           If we need to change padding or margins globally across these cards later,
+           we only update it here once instead of modifying individual components.
+        */
+        .box-spacing {
+            padding: 16px;
+            margin: 12px 0;
+        }
+
+        /* ====================================================
+           Task 1: Zomato-style Restaurant Card
+           ==================================================== */
+        .zomato-card {
+            width: 330px;
+            border: 1px solid #e8e8e8;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #ffffff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .zomato-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        .zomato-img {
+            width: 100%;
+            height: 185px;
+            background-color: #ddd;
+            background-image: linear-gradient(45deg, #ff7e8b, #ed2f47);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .zomato-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 1px solid #f2f2f2;
+        }
+
+        .res-name {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #1c1c1c;
+            margin: 0 0 4px 0;
+        }
+
+        .res-cuisine {
+            font-size: 0.9rem;
+            color: #696969;
+            margin: 0;
+        }
+
+        .res-rating {
+            background-color: #24963f;
+            color: #fff;
+            padding: 4px 6px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .zomato-footer {
+            font-size: 0.85rem;
+            color: #828282;
+            background-color: #fafafa;
+        }
+
+        /* ====================================================
+           Task 2: Flipkart-style Product Tile
+           ==================================================== */
+        .flipkart-tile {
+            width: 220px;
+            background: #fff;
+            border: 1px solid #f0f0f0;
+            border-radius: 4px;
+            text-align: center;
+            display: inline-block;
+            vertical-align: top;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .flipkart-tile:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #2874f0, #004ba0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .product-name {
+            display: block; /* Takes up full width, pushes price below */
+            font-size: 0.95rem;
+            color: #212121;
+            font-weight: 500;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            margin-bottom: 6px;
+        }
+
+        .product-price {
+            display: inline-block; /* Sits nicely in line, lets padding apply cleanly */
+            font-size: 1.05rem;
+            font-weight: bold;
+            color: #111;
+        }
+
+        .original-price {
+            display: inline-block;
+            font-size: 0.85rem;
+            color: #878787;
+            text-decoration: line-through;
+            margin-left: 6px;
+        }
+
+        /* Specific CSS Class to hide the price as requested */
+        .hide-price {
+            display: none !important;
+        }
+
+        /* Toggle helper styles */
+        .control-panel {
+            margin-bottom: 15px;
+        }
+        .btn-toggle {
+            background-color: #2874f0;
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .btn-toggle:hover {
+            background-color: #1a5bb8;
+        }
+
+        /* ====================================================
+           Task 3: Fixed-position WhatsApp Notification Badge
+           ==================================================== */
+        .whatsapp-badge {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background-color: #25d366;
+            color: white;
+            padding: 14px 20px;
+            border-radius: 50px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+            font-weight: bold;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 9999;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.2s ease;
+        }
+
+        .whatsapp-badge:hover {
+            transform: scale(1.05);
+        }
+
+        .whatsapp-icon {
+            font-size: 1.2rem;
+        }
+
+        /* ====================================================
+           Task 4: BookMyShow Movie Poster Grid
+           ==================================================== */
+        .movie-grid {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .movie-card {
+            position: relative; /* Acts as the layout anchor for the absolute badge */
+            width: 200px;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #fff;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+
+        .movie-poster {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(to bottom, #333, #111);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: bold;
+            text-align: center;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .movie-title {
+            padding: 10px 0;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #222;
+        }
+
+        /* Absolute Badge Placement */
+        .movie-badge-new {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #f84464; /* BookMyShow pink/red flavor */
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 4px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Frontend UI Components Showcase</h1>
+
+        <!-- Task 1 Showcase -->
+        <h2>1. Zomato-style Restaurant Card</h2>
+        <div class="showcase-section">
+            <div class="zomato-card">
+                <div class="zomato-img">Spice Hub Image</div>
+                
+                <!-- Reusable spacing utility applied to separate inner data sections cleanly -->
+                <div class="zomato-info box-spacing">
+                    <div>
+                        <h3 class="res-name">The Spice Hub</h3>
+                        <p class="res-cuisine">North Indian, Mughlai, Biryani</p>
+                    </div>
+                    <div class="res-rating">4.2 ★</div>
+                </div>
+                
+                <div class="zomato-footer box-spacing">
+                    <span>Targeting delivery in 25-30 mins</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Task 2 Showcase -->
+        <h2>2. Flipkart-style Product Tile</h2>
+        <div class="showcase-section">
+            <div class="control-panel">
+                <button class="btn-toggle" onclick="togglePrice()">Toggle Price (Hide Class)</button>
+            </div>
+            
+            <div class="flipkart-tile">
+                <div class="product-img">Smart Watch</div>
+                <div style="padding: 12px; text-align: left;">
+                    <span class="product-name">Wireless Fitness Smartwatch Series 7</span>
+                    <div id="priceContainer" class="price-wrapper">
+                        <span class="product-price">₹1,999</span>
+                        <span class="original-price">₹4,999</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Task 4 Showcase -->
+        <h2>3. BookMyShow Movie Poster Grid (With Absolute Badges)</h2>
+        <div class="showcase-section">
+            <div class="movie-grid">
+                
+                <!-- Movie 1: With "NEW" Badge Overlay -->
+                <div class="movie-card">
+                    <!-- Absolute position target below -->
+                    <div class="movie-badge-new">New</div>
+                    <div class="movie-poster" style="background: linear-gradient(135deg, #1f2a44, #111524);">
+                        Action Blockbuster VII
+                    </div>
+                    <div class="movie-title">Action Blockbuster VII</div>
+                </div>
+
+                <!-- Movie 2: Regular -->
+                <div class="movie-card">
+                    <div class="movie-poster" style="background: linear-gradient(135deg, #4a154b, #200521);">
+                        The Romantic Escape
+                    </div>
+                    <div class="movie-title">The Romantic Escape</div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- Task 3: Fixed Position Element -->
+    <a href="https://wa.me/1234567890" target="_blank" class="whatsapp-badge">
+        <span class="whatsapp-icon">💬</span>
+        <span>Chat with us</span>
+    </a>
+
+    <!-- Task 2 Toggle Interactive Script -->
+    <script>
+        function togglePrice() {
+            var priceDiv = document.getElementById('priceContainer');
+            priceDiv.classList.toggle('hide-price');
+        }
+    </script>
+</body>
+</html>

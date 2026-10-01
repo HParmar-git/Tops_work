@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap UI Components Showcase</title>
+    <!-- Bootstrap 5.3.3 CSS Core CDN -->
+    <link href="https://jsdelivr.net" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f3f4f6;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            padding-bottom: 80px;
+        }
+        .component-section {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+        }
+        .section-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #6b7280;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: block;
+        }
+        /* Spotify Custom Overrides */
+        .spotify-nav {
+            background-color: #000000 !important;
+        }
+        .spotify-brand {
+            color: #1DB954 !important;
+            font-weight: 700;
+        }
+        /* Flipkart Card Custom Overrides */
+        .fk-card {
+            border: 1px solid #e0e0e0;
+            transition: box-shadow 0.2s ease;
+            max-width: 320px;
+        }
+        .fk-card:hover {
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+        .fk-img-placeholder {
+            height: 200px;
+            background-color: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #adb5bd;
+        }
+        /* BookMyShow Carousel Custom Overrides */
+        .bms-carousel {
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        .bms-slide-placeholder {
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .carousel-caption {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 6px;
+            padding: 15px;
+            bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TASK 1: SPOTIFY-STYLE NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark spotify-nav sticky-top shadow-sm mb-5">
+        <div class="container">
+            <a class="navbar-brand spotify-brand d-flex align-items-center gap-2" href="#">
+                <!-- Simple SVG Circle Mimicking Spotify Logo -->
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" fill="#1DB954"/></svg>
+                SpotifyBar
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#spotifyNavbar" aria-controls="spotifyNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="spotifyNavbar">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Playlists</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Profile</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2 bg-dark text-white border-secondary rounded-pill px-3" type="search" placeholder="Search Songs, Artists..." aria-label="Search">
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <!-- TASK 5: FOOD DELIVERY FILTER BUTTON ROW (Placed near top logically) -->
+        <div class="component-section">
+            <span class="section-label">Task 5: Zomato-style Food Filters</span>
+            <div class="d-flex flex-wrap gap-2">
+                <button type="button" class="btn btn-outline-danger rounded-pill px-4 active">All</button>
+                <button type="button" class="btn btn-outline-danger rounded-pill px-4">Veg</button>
+                <button type="button" class="btn btn-outline-danger rounded-pill px-4">Non-Veg</button>
+                <button type="button" class="btn btn-outline-danger rounded-pill px-4">Desserts</button>
+                <button type="button" class="btn btn-outline-danger rounded-pill px-4">Gourmet</button>
+            </div>
+        </div>
+
+        <!-- TASK 2: FLIPKART-STYLE PRODUCT PREVIEW CARD -->
+        <div class="component-section">
+            <span class="section-label">Task 2: Flipkart-style Product Card</span>
+            <div class="card fk-card shadow-sm">
+                <div class="fk-img-placeholder">
+                    <svg xmlns="http://w3.org" width="48" height="48" fill="#ced4da" class="bi bi-laptop" viewBox="0 0 16 16">
+                        <path d="M13.5 3a.5.5 0 0 1 .5.5V11H2V3.5a.5.5 0 0 1 .5-.5h11zm-11-1A1.5 1.5 0 0 0 1 3.5V12h14V3.5A1.5 1.5 0 0 0 13.5 2h-11zM0 12.5h16a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 12.5z"/>
+                    </svg>
+                </div>
+                <div class="card-body">
+                    <span class="text-muted small fw-bold text-uppercase d-block mb-1">TechBrand</span>
+                    <h5 class="card-title text-truncate fs-6 mb-2" title="Ultrabook Slim Core i7 16GB RAM">Ultrabook Slim Core i7 16GB RAM</h5>
+                    <div class="d-flex align-items-center gap-2 mb-2">
+                        <span class="badge bg-success" style="font-size: 0.75rem;">4.5 ★</span>
+                        <span class="text-muted small">(425 Ratings)</span>
+                    </div>
+                    <div class="d-flex align-items-baseline gap-2 mb-3">
+                        <span class="fs-5 fw-bold text-dark">₹62,999</span>
+                        <span class="text-decoration-line-through text-muted small">₹79,999</span>
+                        <span class="text-success small fw-semibold">21% off</span>
+                    </div>
+                    <a href="#" class="btn btn-primary w-100 fw-bold rounded-1" style="background-color: #fb641b; border-color: #fb641b;">Buy Now</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- TASK 3: BOOKMYSHOW-STYLE MOVIE CAROUSEL -->
+        <div class="component-section">
+            <span class="section-label">Task 3: BookMyShow Featured Movies Carousel</span>
+            <div id="movieFeaturedCarousel" class="carousel slide bms-carousel" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#movieFeaturedCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#movieFeaturedCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#movieFeaturedCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <!-- Movie Slide 1 -->
+                    <div class="carousel-item active" data-bs-interval="4000">
+                        <div class="bms-slide-placeholder bg-dark bg-gradient">
+                            <span class="opacity-25">Sci-Fi Epic Poster Block</span>
+                        </div>
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5 class="fw-bold text-warning">Cosmic Horizon: Part 2</h5>
+                            <p class="small mb-0">Action, Sci-Fi | UA | Live booking open across IMAX screens.</p>
+                        </div>
+                    </div>
+                    <!-- Movie Slide 2 -->
+                    <div class="carousel-item" data-bs-interval="4000">
+                        <div class="bms-slide-placeholder bg-secondary bg-gradient">
+                            <span class="opacity-25">Mystery Thriller Poster Block</span>
+                        </div>
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5 class="fw-bold text-warning">Whispers in the Dark</h5>
+                            <p class="small mb-0">Suspense, Thriller | A | Releasing this Friday - Pre-book now!</p>
+                        </div>
+                    </div>
+                    <!-- Movie Slide 3 -->
+                    <div class="carousel-item" data-bs-interval="4000">
+                        <div class="bms-slide-placeholder" style="background: linear-gradient(135deg, #4c0519 0%, #111827 100%);">
+                            <span class="opacity-25">Animated Family Comedy Poster Block</span>
+                        </div>
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5 class="fw-bold text-warning">The Mischievous Paws</h5>
+                            <p class="small mb-0">Animation, Comedy, Family | U | The highest-rated animated movie of the season.</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#movieFeaturedCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>

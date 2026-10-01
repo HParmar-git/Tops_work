@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Utilities & Custom Theme Playground</title>
+    <!-- Bootstrap 5.3.3 CSS Core CDN -->
+    <link href="https://jsdelivr.net" rel="stylesheet">
+    
+    <!-- ==========================================
+       TASK 4 COMPONENT: Custom CSS Stylesheet Overrides
+       ========================================== -->
+    <style>
+        /* Overriding the Bootstrap primary button color to a custom hot-pink shade */
+        .btn-primary {
+            background-color: #f84464 !important;
+            border-color: #f84464 !important;
+            color: #ffffff !important;
+            transition: all 0.2s ease-in-out;
+        }
+        
+        .btn-primary:hover, .btn-primary:focus {
+            background-color: #df3855 !important;
+            border-color: #df3855 !important;
+            box-shadow: 0 0 0 0.25rem rgba(248, 68, 100, 0.25) !important;
+        }
+
+        /* Smooth background transitions for theme switcher compatibility */
+        .theme-transition {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Custom graphic card sizing blocks */
+        .img-placeholder {
+            height: 180px;
+            background-color: rgba(0, 0, 0, 0.04);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<!-- Initializing page with default Bootstrap light theme classes -->
+<body id="themeBody" class="bg-light text-dark theme-transition min-vh-100 pb-5">
+
+    <!-- ==========================================
+       TASK 5 COMPONENT: Sticky Floating Theme Switcher Button
+       ========================================== -->
+    <div class="position-fixed bottom-0 end-0 m-4 z-3">
+        <button id="themeToggleBtn" class="btn btn-dark shadow-lg px-4 py-2 rounded-pill fw-bold" onclick="toggleTheme()">
+            🌙 Switch to Dark Mode
+        </button>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container my-5">
+        
+        <header class="mb-5 border-bottom pb-3">
+            <h1 class="fw-black display-5">Bootstrap Utilities Blueprint</h1>
+            <p class="text-muted">A modular review page testing layout metrics, typography parameters, status indicators, custom styles, and dynamic runtime themes.</p>
+        </header>
+
+        <!-- TASK 1: FLIPKART CARDS SHOWCASING 3 DISTINCT SPACING UTILITY LEVELS -->
+        <section class="mb-5">
+            <h2 class="h4 fw-bold text-primary mb-4 text-uppercase tracking-wide">Task 1: Flipkart Spacing Utility Levels</h2>
+            <div class="row g-4">
+                
+                <!-- Level 1 Spacing Card (Compact: m-1, p-1) -->
+                <div class="col-md-4">
+                    <div class="card h-100 border shadow-sm theme-transition">
+                        <div class="m-1 p-1 bg-light-subtle rounded border">
+                            <div class="img-placeholder rounded">Level 1 Image Container</div>
+                            <div class="mt-2 text-center">
+                                <h5 class="fw-bold fs-6 mb-1">Ultra Slim Wired Mouse</h5>
+                                <span class="badge bg-secondary mb-1">Compact Spacing (m-1, p-1)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Level 2 Spacing Card (Medium: m-3, p-3) -->
+                <div class="col-md-4">
+                    <div class="card h-100 border shadow-sm theme-transition">
+                        <div class="m-3 p-3 bg-light-subtle rounded border">
+                            <div class="img-placeholder rounded">Level 2 Image Container</div>
+                            <div class="mt-3 text-center">
+                                <h5 class="fw-bold fs-6 mb-1">Mechanical RGB Keyboard</h5>
+                                <span class="badge bg-secondary mb-1">Medium Spacing (m-3, p-3)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Level 3 Spacing Card (Generous: m-5, p-5) -->
+                <div class="col-md-4">
+                    <div class="card h-100 border shadow-sm theme-transition">
+                        <!-- Note: m-5 creates a large structural gap inside its parent layout element -->
+                        <div class="m-5 p-5 bg-light-subtle rounded border">
+                            <div class="img-placeholder rounded">Level 3 Image Container</div>
+                            <div class="mt-3 text-center">
+                                <h5 class="fw-bold fs-6 mb-1">4K Gaming Display Monitor</h5>
+                                <span class="badge bg-secondary mb-1">Wide Spacing (m-5, p-5)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- TASK 2 & 4: BOOKMYSHOW MOVIE REVIEW WITH TYPOGRAPHY UTILITIES & CUSTOM BUTTON -->
+        <section class="mb-5">
+            <h2 class="h4 fw-bold text-primary mb-4 text-uppercase tracking-wide">Tasks 2 & 4: Movie Review & Custom Styles</h2>
+            <div class="card shadow-sm border theme-transition p-4">
+                <div class="row align-items-center g-4">
+                    <div class="col-md-8">
+                        <!-- Title Typography: display-6, text-transform uppercase, extra-bold weight -->
+                        <h3 class="display-6 fw-black text-uppercase tracking-tight mb-2">Interstellar: Echoes</h3>
+                        
+                        <!-- Rating Typography: small layout, semi-bold weight, muted subtitle text tracking -->
+                        <div class="mb-3 d-flex align-items-center gap-2">
+                            <span class="fs-5 fw-bold text-warning">★ 9.1/10</span>
+                            <span class="text-muted small fw-normal">(184,392 certified reviews)</span>
+                        </div>
+                        
+                        <!-- Review Body Typography: lead paragraph scale, lighter font weight, readable line-height -->
+                        <p class="lead fw-light text-secondary mb-0" style="line-height: 1.6;">
+                            "A cinematic masterclass in digital storytelling. The soundtrack blends seamlessly with sharp visual styling, and the narrative framework presents structural physics concepts clearly without losing its emotional weight."
+                        </p>
+                    </div>
+                    <div class="col-md-4 text-md-end">
+                        <!-- TASK 4 APPLICATION: Overridden custom shade primary button class tag -->
+                        <button class="btn btn-primary btn-lg rounded-pill px-5 fw-bold shadow" type="button">
+                            Book Tickets
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TASK 3: ZOMATO RESTAURANT LIST UTILIZING MULTIPLE COLOR UTILITIES -->
+        <section class="mb-5">
+            <h2 class="h4 fw-bold text-primary mb-4 text-uppercase tracking-wide">Task 3: Zomato Color Utility Status Indicators</h2>
+            <div class="row g-4">
+                
+                <!-- Restaurant Card 1 -->
+                <div class="col-md-6">
+                    <div class="card h-100 shadow-sm border theme-transition overflow-hidden">
+                        <div class="p-3 d-flex justify-content-between align-items-start">
+                            <div>
+                                <h4 class="fw-bold h5 mb-1">The Gourmet Cloud Lounge</h4>
+                                <p class="text-muted small mb-0">North Indian, Mughlai, Artisanal Kebabs</p>
+                            </div>
+                            <!-- Color Utility 1: High Rating (bg-success text-white) -->
+                            <span class="badge bg-success text-white px-2 py-1 fs-6 fw-bold shadow-sm">4.6 ★</span>
+                        </div>
+                        <div class="card-footer bg-transparent border-top-0 p-3 pt-0 d-flex justify-content-between align-items-center">
+                            <!-- Color Utility 2: Dynamic Coupon Offer (bg-danger-subtle text-danger) -->
+                            <span class="badge bg-danger-subtle text-danger px-3 py-2 fw-semibold">🔥 50% OFF up to ₹120</span>
+                            <!-- Color Utility 3: Operational State (text-success fw-bold) -->
+                            <span class="small text-success fw-bold text-uppercase tracking-wider">● Open Now</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Restaurant Card 2 -->
+                <div class="col-md-6">
+                    <div class="card h-100 shadow-sm border theme-transition overflow-hidden">
+                        <div class="p-3 d-flex justify-content-between align-items-start">
+                            <div>
+                                <h4 class="fw-bold h5 mb-1">Midnight Bakeries & Cream</h4>
+                                <p class="text-muted small mb-0">Desserts, Custom Pastries, Italian Gelato</p>
+                            </div>
+                            <!-- Color Utility 1: Average Rating (bg-warning text-dark) -->
+                            <span class="badge bg-warning text-dark px-2 py-1 fs-6 fw-bold shadow-sm">3.9 ★</span>
+                        </div>
+                        <div class="card-footer bg-transparent border-top-0 p-3 pt-0 d-flex justify-content-between align-items-center">
+                            <!-- Color Utility 2: Standard Offer (bg-info-subtle text-info-emphasis) -->

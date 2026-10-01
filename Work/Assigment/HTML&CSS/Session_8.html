@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ==========================================
+       TASK 1 COMPONENT: Meta Viewport Tag
+       ========================================== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Flipkart Product Card</title>
+    <style>
+        /* Base Reset & Styling Setup */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Roboto, -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: #f1f3f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* ==========================================
+           BASE LAYOUT (DESKTOP / WIDE SCREEN > 1200px)
+           ========================================== */
+        .product-card {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            width: 100%;
+            max-width: 850px;
+            display: flex; /* Horizontal alignment layout by default */
+            flex-direction: row;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid #e0e0e0;
+            
+            /* Task 3: Base Wide Padding */
+            padding: 24px; 
+        }
+
+        .product-card:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Image Section Wrapper */
+        .image-container {
+            flex: 0 0 40%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: #ffffff;
+        }
+
+        .product-img-placeholder {
+            width: 100%;
+            height: 250px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #757575;
+            font-size: 0.95rem;
+            border: 1px dashed #ccc;
+        }
+
+        .wishlist-heart {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            color: #c2c2c2;
+            font-size: 1.4rem;
+            cursor: pointer;
+        }
+
+        /* Details Section Wrapper */
+        .details-container {
+            flex: 1;
+            padding-left: 24px; /* Space between side-by-side structures */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Task 3 Base Typography Variables */
+        .brand-name {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #878787;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .product-title {
+            font-size: 1.25rem;
+            color: #212121;
+            font-weight: 500;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .rating-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .rating-badge {
+            background-color: #388e3c;
+            color: #ffffff;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+
+        .reviews-count {
+            color: #878787;
+            font-weight: 500;
+            font-size: 0.85rem;
+        }
+
+        .price-row {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .current-price {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #212121;
+        }
+
+        .mrp-price {
+            font-size: 0.95rem;
+            color: #878787;
+            text-decoration: line-through;
+        }
+
+        .discount-percentage {
+            color: #388e3c;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .f-assured-tag {
+            height: 20px;
+            vertical-align: middle;
+            margin-left: 4px;
+        }
+
+        /* ==========================================
+           TASK 3 COMPONENT: THREE SPECIFIC BREAKPOINTS
+           ========================================== */
+
+        /* 1. LARGE LAPTOP BREAKPOINT (Under 1200px) */
+        @media only screen and (max-width: 1200px) {
+            .product-card {
+                max-width: 750px;
+                padding: 20px; /* Reduced padding */
+            }
+            .product-title {
+                font-size: 1.15rem; /* Reduced font size */
+            }
+            .current-price {
+                font-size: 1.55rem;
+            }
+        }
+
+        /* 2. TABLET BREAKPOINT (Under 900px) */
+        @media only screen and (max-width: 900px) {
+            .product-card {
+                max-width: 650px;
+                padding: 16px; /* Incremental padding drop */
+            }
+            .details-container {
+                padding-left: 16px;
+            }
+            .product-title {
+                font-size: 1.05rem; /* Incremental font drop */
+            }
+            .current-price {
+                font-size: 1.4rem;
+            }
+            .product-img-placeholder {
+                height: 220px;
+            }
+        }
+
+        /* 3. MOBILE REFRACTION BREAKPOINT (Under 600px)
+           Implements Requirement 2 (Horizontal -> Vertical Shift)
+           Implements Requirement 3 (Final padding and text adjustment) */
+        @media only screen and (max-width: 600px) {
+            .product-card {
+                flex-direction: column; /* TASK 2: Switch to Vertical Layout */
+                max-width: 360px;
+                padding: 12px; /* TASK 3: Smallest Padding configuration */
+            }
+
+            .image-container {
+                flex: 0 0 100%;
+                width: 100%;
+            }
+
+            .product-img-placeholder {
+                height: 200px; /* Scaled image container height for mobile layout */
+                border-bottom: 1px solid #f0f0f0;
+            }
+
+            .details-container {
+                padding-left: 0;
+                padding-top: 14px; /* Move spacing separator from left side to top side */
+            }
+
+            .product-title {
+                font-size: 0.95rem; /* TASK 3: Compact Typography scale */
+            }
+
+            .current-price {
+                font-size: 1.25rem;
+            }
+            
+            .mrp-price, .discount-percentage {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Product Card Shell -->
+    <div class="product-card">
+        
+        <!-- Image Compartment (Left on Desktop, Top on Mobile) -->
+        <div class="image-container">
+            <span class="wishlist-heart">❤</span>
+            <div class="product-img-placeholder">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.5">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                </svg>
+                <span style="margin-top: 8px;">Device Image Placeholder</span>
+            </div>
+        </div>
+
+        <!-- Details Compartment (Right on Desktop, Bottom on Mobile) -->
+        <div class="details-container">
+            <span class="brand-name">LuminaTech</span>
+            <h1 class="product-title">UltraVision 27-inch 4K HDR Ergonomic Professional Monitor</h1>
+            
+            <div class="rating-row">
+                <span class="rating-badge">4.6 ★</span>
+                <span class="reviews-count">2,841 Ratings & 342 Reviews</span>
+            </div>
+
+            <div class="price-row">
+                <span class="current-price">₹28,499</span>
+                <span class="mrp-price">₹42,999</span>
+                <span class="discount-percentage">33% Off</span>
+                <!-- F-Assured Mock Graphic Text -->
+                <span style="color: #2874f0; font-style: italic; font-weight: 800; font-size: 0.75rem; border: 1px solid #2874f0; padding: 1px 3px; border-radius: 2px; margin-left: 5px;">f-assured</span>
+            </div>
+
+            <p style="color: #666; font-size: 0.85rem; line-height: 1.4; margin-bottom: 8px;">• Type-C Display Input Delivery with 65W Power Charging</p>
+            <p style="color: #666; font-size: 0.85rem; line-height: 1.4;">• 99% sRGB Colour Gamut Factory Calibrated Display Panel</p>
+        </div>
+
+    </div>
+
+</body>
+</html>
