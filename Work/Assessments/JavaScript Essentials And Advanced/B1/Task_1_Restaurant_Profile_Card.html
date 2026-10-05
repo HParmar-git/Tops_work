@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Profile Card</title>
+</head>
+<body>
+
+    <h1>Restaurant Profile Card</h1>
+
+    <script>
+        // Restaurant details
+        const restaurantName = "Spice Garden";
+        const cuisineType = "Indian";
+        const averageRating = 4.5;
+        const isOpen = true;
+
+        // Ternary operator
+        const status = isOpen ? "Open Now" : "Closed";
+
+        // Template literal
+        const restaurantProfile =
+            `${restaurantName} | ${cuisineType} | Rating: ${averageRating} | ${status}`;
+
+        // Display formatted profile in console
+        console.log(restaurantProfile);
+
+        // Create restaurant object
+        const restaurantDetails = {
+            name: restaurantName,
+            cuisine: cuisineType,
+            rating: averageRating,
+            isOpen: isOpen
+        };
+
+        // Convert object into JSON string
+        const restaurantJSON = JSON.stringify(restaurantDetails);
+
+        // Display JSON separately
+        console.log(restaurantJSON);
+    </script>
+
+</body>
+</html>

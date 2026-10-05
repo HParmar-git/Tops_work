@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 4 - Order Tracker with Persistence</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        #loading {
+            color: #555;
+        }
+
+        #error {
+            color: red;
+            margin: 10px 0;
+        }
+
+        #restaurantList {
+            padding: 0;
+            list-style: none;
+        }
+
+        #restaurantList li {
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        #restaurantList li:hover {
+            background-color: #f2f2f2;
+        }
+
+        #restaurantList li.favorite {
+            font-weight: bold;
+            background-color: #dff5e1;
+            border-color: green;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Restaurant Order Tracker</h1>
+
+    <p id="loading">Loading restaurants...</p>
+    <p id="error"></p>
+
+    <ul id="restaurantList"></ul>
+
+    <script>
+        const API_URL = "https://jsonplaceholder.typicode.com/users";
+        const STORAGE_KEY = "favoriteRestaurant";
+
+        const loading = document.getElementById("loading");
+        const error = document.getElementById("error");
+        const restaurantList = document.getElementById("restaurantList");
+
+        let restaurants = [];
+
+        // Fetch restaurants using async/await
+        async function loadRestaurants() {
+            loading.textContent = "Loading restaurants...";
+            error.textContent = "";
+
+            try {
+                const response = await fetch(API_URL);
+
+                if (!response.ok) {
+                    throw new Error("Failed to fetch restaurant data.");
+                }
+
+                const users = await response.json();
+
+                // Treat each user as a mock restaurant
+                restaurants = users.map(user => ({
+                    id: user.id,
+                    name: user.name
+                }));
+
+                renderRestaurants();
+            } catch (err) {
+                error.textContent =
+                    "Sorry, restaurants could not be loaded. Please try again.";
+                console.error(err);
+            } finally {
+                loading.textContent = "";
+            }
+        }
+
+        // Display restaurants
+        function renderRestaurants() {
+            restaurantList.innerHTML = "";
+
+            const savedFavorite =
+                localStorage.getItem(STORAGE_KEY);
+
+            restaurants.forEach(restaurant => {
+                const li = document.createElement("li");
+
+                li.textContent = restaurant.name;
+                li.dataset.id = restaurant.id;
+
+                // Re-highlight saved favorite after page reload
+                if (savedFavorite === String(restaurant.id)) {
+                    li.classList.add("favorite");
+                }
+
+                li.addEventListener("click", function () {
+                    // Save selected restaurant
+                    localStorage.setItem(
+                        STORAGE_KEY,
+                        restaurant.id
+                    );
+
+                    // Remove previous highlight
+                    document
+                        .querySelectorAll("#restaurantList li")
+                        .forEach(item => {
+                            item.classList.remove("favorite");
+                        });
+
+                    // Highlight selected restaurant
+                    li.classList.add("favorite");
+                });
+
+                restaurantList.appendChild(li);
+            });
+        }
+
+        // Start application
+        loadRestaurants();
+    </script>
+
+</body>
+</html>

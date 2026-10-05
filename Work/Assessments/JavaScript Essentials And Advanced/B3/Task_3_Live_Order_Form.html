@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 3 - Live Order Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        input, button {
+            padding: 10px;
+            margin: 5px 0;
+        }
+
+        input {
+            width: 90%;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        #message {
+            display: block;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        #cart {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Live Order Form</h1>
+
+    <form id="orderForm">
+        <label for="dishName">Dish Name:</label><br>
+        <input type="text" id="dishName" placeholder="Enter dish name">
+
+        <br><br>
+
+        <label for="quantity">Quantity:</label><br>
+        <input type="number" id="quantity" min="1" placeholder="Enter quantity">
+
+        <br>
+
+        <span id="message"></span>
+
+        <button type="submit" id="addToCart">Add to Cart</button>
+    </form>
+
+    <div id="cart">
+        <h2>Cart</h2>
+        <ul id="cartList"></ul>
+    </div>
+
+    <script>
+        const orderForm = document.getElementById("orderForm");
+        const dishName = document.getElementById("dishName");
+        const quantity = document.getElementById("quantity");
+        const message = document.getElementById("message");
+        const cartList = document.getElementById("cartList");
+
+        // Attach click event using addEventListener
+        document.getElementById("addToCart").addEventListener("click", function () {
+            message.textContent = "";
+            message.style.color = "";
+
+            // Validate dish name
+            if (dishName.value.trim() === "") {
+                message.textContent = "Please enter a dish name.";
+                message.style.color = "red";
+                return;
+            }
+
+            // Validate quantity
+            if (quantity.value === "" || Number(quantity.value) <= 0) {
+                message.textContent = "Please enter a valid quantity.";
+                message.style.color = "red";
+                return;
+            }
+
+            // Validation passed - add item to cart
+            const li = document.createElement("li");
+            li.textContent = `${dishName.value.trim()} - Quantity: ${quantity.value}`;
+            cartList.appendChild(li);
+
+            // Success message
+            message.textContent = "Item added to cart successfully!";
+            message.style.color = "green";
+
+            // Clear both input fields
+            dishName.value = "";
+            quantity.value = "";
+        });
+
+        // Prevent the form's default browser behaviour
+        orderForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+        });
+    </script>
+
+</body>
+</html>

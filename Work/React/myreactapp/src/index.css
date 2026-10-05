@@ -1,0 +1,77 @@
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Navbar */
+
+#mainNav {
+    transition: padding-top 0.3s,
+                padding-bottom 0.3s;
+}
+
+
+/* Navbar before scrolling */
+
+#mainNav {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+
+/* Navbar after scrolling */
+
+#mainNav.navbar-shrink {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+}
+
+
+/* Logo */
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+
+/* Sections */
+
+.page-section {
+    min-height: 100vh;
+    padding-top: 120px;
+    padding-bottom: 80px;
+}
+
+
+/* Different section spacing */
+
+#home {
+    background-color: #f8f9fa;
+}
+
+#about {
+    background-color: #e9ecef;
+}
+
+#services {
+    background-color: #dee2e6;
+}
+
+#contact {
+    background-color: #ced4da;
+}
+
+
+/* Section heading */
+
+.page-section h1 {
+    margin-bottom: 20px;
+}
+

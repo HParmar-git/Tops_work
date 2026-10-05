@@ -1,0 +1,32 @@
+[
+  {
+    "id": "rest-1",
+    "name": "Spice Bistro & Grill",
+    "cuisine": "Indian & Fusion",
+    "rating": 4.9,
+    "deliveryTime": "20-30 min",
+    "minOrder": "$15.00",
+    "badge": "Top Rated",
+    "bgGradient": "linear-gradient(135deg, #ff7e5f, #feb47b)"
+  },
+  {
+    "id": "rest-2",
+    "name": "Bella Italia Trattoria",
+    "cuisine": "Italian & Pasta",
+    "rating": 4.8,
+    "deliveryTime": "25-35 min",
+    "minOrder": "$20.00",
+    "badge": "Chef's Special",
+    "bgGradient": "linear-gradient(135deg, #43e97b, #38f9d7)"
+  },
+  {
+    "id": "rest-3",
+    "name": "Sakura Sushi Bar",
+    "cuisine": "Japanese & Asian",
+    "rating": 4.7,
+    "deliveryTime": "30-40 min",
+    "minOrder": "$25.00",
+    "badge": "Popular",
+    "bgGradient": "linear-gradient(135deg, #fa709a, #fee140)"
+  }
+]

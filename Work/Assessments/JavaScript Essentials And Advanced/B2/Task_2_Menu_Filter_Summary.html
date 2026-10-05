@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 2 - Menu Filter & Summary</title>
+</head>
+<body>
+
+    <h1>Menu Filter & Summary</h1>
+    <p>Open the browser console (F12 → Console) to see the output.</p>
+
+    <script>
+        // 1. Create an array of dish objects
+        const dishes = [
+            {
+                name: "Paneer Tikka",
+                price: 180,
+                category: "Food",
+                isVegetarian: true
+            },
+            {
+                name: "Chicken Biryani",
+                price: 250,
+                category: "Food",
+                isVegetarian: false
+            },
+            {
+                name: "Veg Burger",
+                price: 150,
+                category: "Food",
+                isVegetarian: true
+            },
+            {
+                name: "Cold Coffee",
+                price: 120,
+                category: "Beverage",
+                isVegetarian: true
+            },
+            {
+                name: "Chicken Pizza",
+                price: 320,
+                category: "Food",
+                isVegetarian: false
+            },
+            {
+                name: "Masala Dosa",
+                price: 140,
+                category: "Food",
+                isVegetarian: true
+            },
+            {
+                name: "Mango Shake",
+                price: 160,
+                category: "Beverage",
+                isVegetarian: true
+            }
+        ];
+
+        // 2. Use filter() to get only vegetarian dishes
+        const vegetarianDishes = dishes.filter(
+            dish => dish.isVegetarian === true
+        );
+
+        console.log("Vegetarian Dishes:", vegetarianDishes);
+        console.log("Vegetarian Dish Count:", vegetarianDishes.length);
+
+        // 3. Use map() to create formatted menu strings
+        const formattedMenu = dishes.map(
+            dish => `${dish.name} – Rs ${dish.price}`
+        );
+
+        console.log("Formatted Menu:", formattedMenu);
+
+        // 4. Use reduce() to calculate total price
+        const totalPrice = dishes.reduce(
+            (total, dish) => total + dish.price,
+            0
+        );
+
+        console.log("Total Price of All Dishes: Rs", totalPrice);
+
+        // 5. Three clearly labelled outputs
+        console.log("--------------------------------");
+        console.log("Vegetarian Dish Count:", vegetarianDishes.length);
+        console.log("Formatted Menu Array:", formattedMenu);
+        console.log("Total Menu Price: Rs", totalPrice);
+        console.log("--------------------------------");
+    </script>
+
+</body>
+</html>
